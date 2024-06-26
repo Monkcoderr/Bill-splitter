@@ -1,94 +1,49 @@
-const billAmountInput = document.querySelector('#bill-amount')
-const customTipInput = document.querySelector('.custom-tip')
-const numberOfPeopleInput = document.querySelector('.number-of-people')
-const generateBillBtn = document.querySelector('.generate-bill-btn')
-const tipAmountOutput = document.querySelector('.tip-amount span')
-const totalBillOutput = document.querySelector('.total span')
-const eachPersonBillOutput = document.querySelector('.each-person-bill span')
-const tipsContainer = document.querySelector('.tip-container')
-const resetBtn = document.querySelector('.reset-btn')
+const mi = document.querySelector(".money");
+    const pi = document.querySelector(".nop");
+    const gba = document.querySelector(".gb");
+    const epb = document.querySelector(".eb");
+    const cot = document.querySelector(".ctip")
+    const btt = document.querySelector(".button")
+    let st = 0
+gba.addEventListener('click',()=>{
+//     const boi = parseInt(mi.value);
+//         const noop = parseInt(pi.value);
+//         const coot = parseInt(cot.value);
+        
+//         const eop = (boi + coot) / noop;
+//         epb.innerHTML = eop
+// console.log(eop)
 
-let tipPercentage = 0
+const ct = parseInt(cot.value)
+const boi = parseInt(mi.value);
+const noop = parseInt(pi.value);
+const eop = (boi + ct+st) / noop;
+    epb.innerHTML = eop
+})
+ 
+btt.addEventListener('click',(e)=>{
+    [...btt.children].forEach((bo)=>{
+        bo.classList.remove('s')
+    })
+    
+    e.target.classList.add("s")
+    // const ct = parseInt(e.target.innerHTML)
+    // const boi = parseInt(mi.value);
+    // const noop = parseInt(pi.value);
+    // const eop = (boi + ct) / noop;
+    //     epb.innerHTML = eop
+        st = parseInt(e.target.innerText)
+       cot.value = 0
 
-generateBillBtn.addEventListener('click', () => {
-  const billAmount = parseInt(billAmountInput.value)
-  const numberOfPeople = parseInt(numberOfPeopleInput.value)
 
-  const tipAmount = billAmount * (tipPercentage / 100)
-  const totalBill = billAmount + tipAmount
-  const eachPersonBill = totalBill / numberOfPeople
-
-  tipAmountOutput.innerText = `₹${tipAmount}`
-  totalBillOutput.innerText = `₹${totalBill}`
-  eachPersonBillOutput.innerText = `₹${eachPersonBill}`
-
-  resetBtn.disabled = false
 })
 
-tipsContainer.addEventListener('click', (e) => {
-  if (tipsContainer.classList.contains('disabled')) return
-
-  if (e.target !== tipsContainer) {
-    ;[...tipsContainer.children].forEach((tip) =>
-      tip.classList.remove('selected')
-    )
-    e.target.classList.add('selected')
-    tipPercentage = parseInt(e.target.innerText)
-    customTipInput.value = ''
-
-    if (numberOfPeopleInput.value && tipPercentage) {
-      generateBillBtn.disabled = false
-    } else {
-      generateBillBtn.disabled = true
-    }
-  }
-})
-
-customTipInput.addEventListener('input', () => {
-  tipPercentage = parseInt(customTipInput.value)
-  ;[...tipsContainer.children].forEach((tip) =>
-    tip.classList.remove('selected')
-  )
-
-  if (numberOfPeopleInput.value && tipPercentage) {
-    generateBillBtn.disabled = false
-  } else {
-    generateBillBtn.disabled = true
-  }
-})
-
-resetBtn.addEventListener('click', () => {
-  tipPercentage = 0
-  billAmountInput.value = ''
-  customTipInput.value = ''
-  numberOfPeopleInput.value = ''
-  tipAmountOutput.innerText = ''
-  totalBillOutput.innerText = ''
-  eachPersonBillOutput.innerText = ''
-  ;[...tipsContainer.children].forEach((tip) =>
-    tip.classList.remove('selected')
-  )
-
-  resetBtn.disabled = true
-  generateBillBtn.disabled = true
-})
-
-billAmountInput.addEventListener('input', () => {
-  if (billAmountInput.value) {
-    customTipInput.disabled = false
-    numberOfPeopleInput.disabled = false
-    tipsContainer.classList.remove('disabled')
-  } else {
-    customTipInput.disabled = true
-    numberOfPeopleInput.disabled = true
-    tipsContainer.classList.add('disabled')
-  }
-})
-
-numberOfPeopleInput.addEventListener('input', () => {
-  if (numberOfPeopleInput.value && tipPercentage) {
-    generateBillBtn.disabled = false
-  } else {
-    generateBillBtn.disabled = true
-  }
+cot.addEventListener('click',()=>{
+    st = 0;
+    cot.value="";
+    [...btt.children].forEach((bo)=>{
+        bo.classList.remove('s')
+    })
+    
+    
 })
